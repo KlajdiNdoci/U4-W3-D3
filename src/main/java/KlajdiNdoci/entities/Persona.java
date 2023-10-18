@@ -4,7 +4,10 @@ import KlajdiNdoci.enums.Sesso;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
+
+@Entity
+@Table(name = "persone")
 
 public class Persona {
     @Id
@@ -17,20 +20,18 @@ public class Persona {
     private LocalDate dataNascita;
     @Enumerated(EnumType.STRING)
     private Sesso sesso;
-    @ManyToOne
-    @JoinColumn(name = "partecipazioni_id")
-    private Set<Partecipazione> listaPartecipazioni;
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
+    private List<Partecipazione> listaPartecipazioni;
 
     public Persona() {
     }
 
-    public Persona(String nome, String cognome, String email, LocalDate dataNascita, Sesso sesso, Set<Partecipazione> listaPartecipazioni) {
+    public Persona(String nome, String cognome, String email, LocalDate dataNascita, Sesso sesso, {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.dataNascita = dataNascita;
         this.sesso = sesso;
-        this.listaPartecipazioni = listaPartecipazioni;
     }
 
     @Override
@@ -91,11 +92,11 @@ public class Persona {
         this.sesso = sesso;
     }
 
-    public Set<Partecipazione> getListaPartecipazioni() {
+    public List<Partecipazione> getListaPartecipazioni() {
         return listaPartecipazioni;
     }
 
-    public void setListaPartecipazioni(Set<Partecipazione> listaPartecipazioni) {
+    public void setListaPartecipazioni(List<Partecipazione> listaPartecipazioni) {
         this.listaPartecipazioni = listaPartecipazioni;
     }
 }

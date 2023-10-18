@@ -1,13 +1,12 @@
 package KlajdiNdoci;
 
-import KlajdiNdoci.entities.EventoDAO;
-import KlajdiNdoci.entities.LocationDAO;
-import KlajdiNdoci.entities.PartecipazioneDAO;
-import KlajdiNdoci.entities.PersonaDAO;
+import KlajdiNdoci.entities.*;
+import KlajdiNdoci.enums.Sesso;
 import KlajdiNdoci.utils.JpaUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.time.LocalDate;
 
 public class Application {
     private static final EntityManagerFactory emf = JpaUtil.getEntityManagerFactory();
@@ -19,6 +18,10 @@ public class Application {
             PersonaDAO personaDAO = new PersonaDAO(em);
             LocationDAO locationDAO = new LocationDAO(em);
             PartecipazioneDAO partecipazioneDAO = new PartecipazioneDAO(em);
+
+
+            Partecipazione p1 = new Partecipazione();
+            Persona aldo = new Persona("Aldo", "Baglio", "aldobaglio@gmail.com", LocalDate.of(1970, 12, 4), Sesso.M);
 
 //            Evento ev1 = new Evento("Evento1", LocalDate.of(2022, 12, 5), "ciao", TipoEvento.PUBBLICO, 200);
 //            ed.save(ev1);

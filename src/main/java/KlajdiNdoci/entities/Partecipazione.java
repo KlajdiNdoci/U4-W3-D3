@@ -4,13 +4,18 @@ import KlajdiNdoci.enums.Stato;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "partecipazioni")
+
 public class Partecipazione {
     @Id
     @GeneratedValue
     private long id;
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
+    @ManyToOne
+    @JoinColumn(name = "evento_id", nullable = false)
     private Evento evento;
     @Enumerated(EnumType.STRING)
     private Stato stato;
