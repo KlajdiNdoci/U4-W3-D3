@@ -4,7 +4,7 @@ import KlajdiNdoci.enums.TipoEvento;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "eventi")
@@ -22,21 +22,19 @@ public class Evento {
     @Enumerated(EnumType.STRING)
     private TipoEvento tipoEvento;
     private int numeroMassimoPartecipanti;
-    @OneToMany(mappedBy = "evento")
-    @JoinColumn(name = "partecipazioni_id")
-    private List<Partecipazione> listaPartecipazioni;
+    @OneToMany
+    private Set<Partecipazione> listaPartecipazioni;
     @OneToOne
     @JoinColumn(name = "location_id")
     private Location location;
 
 
-    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, List<Partecipazione> listaPartecipazioni, Location location) {
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
-        this.listaPartecipazioni = listaPartecipazioni;
         this.location = location;
     }
 
@@ -44,11 +42,11 @@ public class Evento {
 
     }
 
-    public List<Partecipazione> getListaPartecipazioni() {
+    public Set<Partecipazione> getListaPartecipazioni() {
         return listaPartecipazioni;
     }
 
-    public void setListaPartecipazioni(List<Partecipazione> listaPartecipazioni) {
+    public void setListaPartecipazioni(Set<Partecipazione> listaPartecipazioni) {
         this.listaPartecipazioni = listaPartecipazioni;
     }
 

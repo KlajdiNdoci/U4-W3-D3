@@ -14,7 +14,7 @@ public class Partecipazione {
     @ManyToOne
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "evento_id", nullable = false)
     private Evento evento;
     @Enumerated(EnumType.STRING)
@@ -29,15 +29,6 @@ public class Partecipazione {
         this.stato = stato;
     }
 
-    @Override
-    public String toString() {
-        return "Partecipazione{" +
-                "id=" + id +
-                ", persona=" + persona +
-                ", evento=" + evento +
-                ", stato=" + stato +
-                '}';
-    }
 
     public long getId() {
         return id;

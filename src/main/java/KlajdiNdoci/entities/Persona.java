@@ -20,13 +20,13 @@ public class Persona {
     private LocalDate dataNascita;
     @Enumerated(EnumType.STRING)
     private Sesso sesso;
-    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Partecipazione> listaPartecipazioni;
 
     public Persona() {
     }
 
-    public Persona(String nome, String cognome, String email, LocalDate dataNascita, Sesso sesso, {
+    public Persona(String nome, String cognome, String email, LocalDate dataNascita, Sesso sesso) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
