@@ -1,6 +1,9 @@
 package KlajdiNdoci;
 
 import KlajdiNdoci.entities.EventoDAO;
+import KlajdiNdoci.entities.LocationDAO;
+import KlajdiNdoci.entities.PartecipazioneDAO;
+import KlajdiNdoci.entities.PersonaDAO;
 import KlajdiNdoci.utils.JpaUtil;
 
 import javax.persistence.EntityManager;
@@ -12,7 +15,10 @@ public class Application {
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
         try {
-            EventoDAO ed = new EventoDAO(em);
+            EventoDAO eventoDAO = new EventoDAO(em);
+            PersonaDAO personaDAO = new PersonaDAO(em);
+            LocationDAO locationDAO = new LocationDAO(em);
+            PartecipazioneDAO partecipazioneDAO = new PartecipazioneDAO(em);
 
 //            Evento ev1 = new Evento("Evento1", LocalDate.of(2022, 12, 5), "ciao", TipoEvento.PUBBLICO, 200);
 //            ed.save(ev1);
