@@ -2,8 +2,7 @@ package KlajdiNdoci.entities;
 
 import KlajdiNdoci.enums.Sesso;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -16,7 +15,10 @@ public class Persona {
     private String cognome;
     private String email;
     private LocalDate dataNascita;
+    @Enumerated(EnumType.STRING)
     private Sesso sesso;
+    @ManyToOne
+    @JoinColumn(name = "partecipazioni_id")
     private Set<Partecipazione> listaPartecipazioni;
 
     public Persona() {

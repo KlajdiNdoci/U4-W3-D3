@@ -2,15 +2,17 @@ package KlajdiNdoci.entities;
 
 import KlajdiNdoci.enums.Stato;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 public class Partecipazione {
     @Id
     @GeneratedValue
     private long id;
+    @OneToMany
+    @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
     private Evento evento;
+    @Enumerated(EnumType.STRING)
     private Stato stato;
 
     public Partecipazione() {
